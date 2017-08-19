@@ -16,6 +16,12 @@ body {
   margin-left: 10px;
 }
 
+.nav-wrapper a:hover{
+  color: #fff;
+  text-decoration: none;
+
+}
+
 .main{
   padding: 5px;
 }
@@ -29,29 +35,23 @@ body {
 .debugger{
   width: 95%;
   margin: 10px auto;
-  border:1px solid #000000;
+  border:1px solid #889DB5;
+    padding:5px;
   height:600px;
 }
 
 .top-bar{
   width: 100%;
   display: inline-block;
-  margin: 5px;
 }
 
-.top-bar a{
-  display: inline;
-}
-
-.top-bar .fileName{
-  display: inline;
-  text-align: right;
+.row{
+    padding:0px;
+    margin: 0px;
 }
 
 .btn{
   background-color: #889DB5;
-  padding: 10px 13px 10px 13px;
-  margin: 5px;
 }
 
 .footer{
