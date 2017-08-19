@@ -37,11 +37,11 @@ body {
   margin: 10px auto;
   border:1px solid #889DB5;
     padding:5px;
-  height:600px;
 }
 
 .top-bar{
   width: 100%;
+    padding: 5px;
   display: inline-block;
 }
 
@@ -51,7 +51,8 @@ body {
 }
 
 .btn{
-  background-color: #889DB5;
+    margin: 10px;
+    background-color: #889DB5;
 }
 
 .footer{
@@ -59,3 +60,28 @@ body {
   text-align:center;
 }
 
+.graph{
+    border: groove #889DB5;
+    margin: 10px;
+    height: 500px;
+}
+
+.openList{
+    border: groove #889DB5;
+    margin: 10px;
+    height: 220px;
+    width: 100%;
+}
+
+.closedList{
+    border: groove #889DB5;
+    margin: 10px;
+    height: 220px;
+    width: 100%;
+}
+
+.eventLog{
+    border: groove #889DB5;
+    margin: 10px;
+    height: 220px;
+}
