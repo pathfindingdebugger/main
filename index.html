@@ -16,6 +16,8 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
 
+    <!--Custom JavaScript-->
+    <script src="js/script.js"></script>
 
     <title>Pathfinding Debugger</title>
 
@@ -25,7 +27,6 @@
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
 
     <!-- Custom styles for ths template -->
     <link href="style.css" rel="stylesheet">
@@ -59,13 +60,13 @@
       <!-- Three columns of text below the carousel -->
       <div class="row top-bar">
         <div class="btn1 col-sm-1">
-            <a class="waves-effect waves-light btn"><i class="material-icons">play_circle_outline</i></a>
+            <a class="playbtn btn"><i class="material-icons">play_circle_outline</i></a>
         </div>
         <div class="btn2 col-sm-1">
-            <a class="waves-effect waves-light btn"><i class="material-icons">redo</i></a>
+            <a class="stepbtn btn"><i class="material-icons">redo</i></a>
         </div>
         <div class="btn3 col-sm-1">
-            <a class="waves-effect waves-light btn"><i class="material-icons">pause_circle_outline</i></a>
+            <a class="btn"><i class="material-icons">pause_circle_outline</i></a>
         </div>
           <div class="btn3 col-sm-1">
           </div>
@@ -74,8 +75,8 @@
         <div class="btn3 col-lg-5" style="margin: 10px">
             <p>Map Name and Algorithm</p>
         </div>
-          <div class="btn3 col-sm-1">
-              <a class="waves-effect waves-light btn"><i class="material-icons">add_circle_outline</i></a>
+          <div id="uploadbtn" class="uploadbtn col-sm-1">
+              <a class="btn"><i class="material-icons">add_circle_outline</i></a>
           </div>
       </div>
 
@@ -87,15 +88,19 @@
             <div class="lists col-lg-5">
                 <div class="row">
                     <h4>Open List:</h4>
-                    <div class="openList col-lg-6">
-                        OpenList
+
+                    <!--OpenList console-->
+                    <div class="lists openList col-lg-6">
                     </div>
+
                 </div>
                 <div class="row">
                     <h4>Closed List:</h4>
-                    <div class="closedList col-lg-6">
-                        ClosedList
+
+                    <!--ClosedList console-->
+                    <div class="lists closedList col-lg-6">
                     </div>
+
                 </div>
 
             </div>
@@ -105,8 +110,11 @@
             <h4>Event Log:</h4>
         </div>
 
-        <div class="eventLog row">
-           <p>Event Log</p>
+        <!--Event Log Console-->
+        <div id="eventLog" class="eventLog row">
+            <ul>
+
+            </ul>
         </div>
 
     </div>

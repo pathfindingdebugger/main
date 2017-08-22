@@ -71,16 +71,18 @@ body {
 
 .openList{
     border: groove #889DB5;
-    margin: 10px;
     height: 220px;
     width: 100%;
+    overflow: scroll;
+
 }
 
 .closedList{
     border: groove #889DB5;
-    margin: 10px;
     height: 220px;
     width: 100%;
+    overflow: scroll;
+
 }
 
 .eventLog{
@@ -88,6 +90,7 @@ body {
     margin: 10px;
     height: 220px;
     padding: 5px;
+    overflow: scroll;
 }
 
 .eventDec{
@@ -101,4 +104,13 @@ body {
 .btn i{
     font-size: 35px;
     padding: 0px;
+}
+
+.btn:active{
+    background: #fff;
+}
+
+.lists{
+    padding: 5px;
+    margin: 10px;
 }
