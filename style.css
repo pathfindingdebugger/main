@@ -53,6 +53,9 @@ body {
 .btn{
     margin: 10px;
     background-color: #889DB5;
+    height:50px;
+    width: 80px;
+    padding: 0px 5px 0px 5px ;
 }
 
 .footer{
@@ -63,7 +66,7 @@ body {
 .graph{
     border: groove #889DB5;
     margin: 10px;
-    height: 500px;
+    height: 550px;
 }
 
 .openList{
@@ -84,4 +87,18 @@ body {
     border: groove #889DB5;
     margin: 10px;
     height: 220px;
+    padding: 5px;
+}
+
+.eventDec{
+    padding: 10px 10px 2px 10px;
+}
+
+.graphBox h4{
+    padding-left: 10px;
+}
+
+.btn i{
+    font-size: 35px;
+    padding: 0px;
 }
