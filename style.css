@@ -101,6 +101,10 @@ body {
     padding-left: 10px;
 }
 
+.eventLog ol{
+padding: 2px 17px 2px 17px;
+}
+
 .btn i{
     font-size: 35px;
     padding: 0px;
