@@ -4,9 +4,28 @@ var currentEventNum = 0;
 var eventItems;
 var openList = [];
 var closedList = [];
+var textData;
 var dataReceived;
 
 $(document).ready(function () {
+    var fileInput = document.getElementById('inputFile');
+
+    fileInput.addEventListener('change', function(e) {
+        var file = fileInput.files[0];
+        var textType = /text.*/;
+
+        if (file.type.match(textType)) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                textData = reader.result;
+            };
+            reader.readAsText(file);
+        } else {
+            window.alert("File not supported!");
+        }
+    });
+
     $('#dataLoader').click(function(){
         var ref = firebase.database().ref("/");
         ref.once("value").then(function (snapshot) {
@@ -39,13 +58,14 @@ $(document).ready(function () {
                     var closedListItem = document.createTextNode("[" + closedList + "]");
                     closedListli.appendChild(closedListItem)
                 }
+
                 // Append the text to <li>
                 eventli.appendChild(newMainItem);
                 $('#openListConsole').append(openListli);
                 $('#closedListConsole').append(closedListli);
                 $('#eventList').append(eventli);
             }
-            var mydiv = $(".eventLog, .openList, .closedList");
+            var mydiv = $(".eventLog");
             mydiv.scrollTop(mydiv.prop("scrollHeight"));
         }else{
             window.alert("No data loaded. Please select file and load data.")
@@ -63,7 +83,6 @@ $(document).ready(function () {
                 var openListItem = document.createTextNode("[" + openList + "]");
                 openListli.appendChild(openListItem)
             }
-
             if (dataReceived[currentEventNum].type == 'closing') {
                 openList.pop(dataReceived[currentEventNum].x);
                 var closedListli = document.createElement("LI");
@@ -88,12 +107,10 @@ $(document).ready(function () {
                 eventItems.push(val);
                 //Can be accessed by eventItems[0][i] of i loop
             });
-            firebase.database().ref('/').set({
-            data : eventItems[0]
+                firebase.database().ref('/').set({
+                data : eventItems[0]
+
             });
         });
     })
 });
-
-
-
