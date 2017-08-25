@@ -92,33 +92,19 @@
             <span style="padding-left: 10px">Pause</span>
         </div>
 
-        <div class="btn3 col-lg-5 col-md-5" style="margin: 10px">
+        <div class="btn3 col-lg-3 col-md-3" style="margin: 10px">
             <p>Map Name and Algorithm</p>
         </div>
-          <div id="uploadbtn" class="uploadbtn col-sm-2 col-md-2">
 
-              <script>
-                  var textFile;
-                  function loadFile(o)
-                  {
-                      var fr = new FileReader();
-                      fr.onload = function(e)
-                      {
-                          showDataFile(e, o);
-                      };
-                      fr.readAsText(o.files[0]);
-                  }
+        <div class="btn3 col-lg-2 col-md-2" style="margin: 10px">
+          <button id="dataLoader" class="btn" style="width: 100%">Load Data</button>
+        </div>
 
-                  function showDataFile(e, o)
-                  {
-                      textFile = e.target.result;
-                  }
-              </script>
-              <input type="file" id="inputFile" onchange="loadFile(this)">
+        <div id="uploadzone" class="uploadbtn col-sm-2 col-md-2">
+          <input type="file" id="inputFile">
+          <button id="uploader" class="btn" >Upload</button>
 
-              <button id="dataLoader" class="btn" style="width: 300px">Load Data</button>
-
-          </div>
+        </div>
       </div>
 
         <div id="graphBox" class="graphBox row">

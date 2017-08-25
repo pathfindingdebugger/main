@@ -4,10 +4,24 @@ var currentEventNum = 0;
 var eventItems;
 var openList = [];
 var closedList = [];
-// var textData;
+var textData;
 var dataReceived;
 
 $(document).ready(function () {
+
+    // fileInput.addEventListener('change', function(o)
+    // {   var fr = new FileReader();
+    //     fr.onload = function(e)
+    //     {
+    //         showDataFile(e, o);
+    //     };
+    //     fr.readAsText(o.files[0]);
+    // };
+    //
+    // function showDataFile(e, o)
+    // {
+    //     textData = e.target.result;
+    // }
 
     // fileInput.addEventListener('change', function(e) {
     //     var file = fileInput.files[0];
@@ -25,19 +39,19 @@ $(document).ready(function () {
     //     }
     // });
 
-    $('#dataLoader').click(function(){
+    $('#dataLoader').click(function () {
         var ref = firebase.database().ref("/");
         ref.once("value").then(function (snapshot) {
             dataReceived = snapshot.val();
             dataReceived = dataReceived.data;
-            if(dataReceived!=null) {
+            if (dataReceived != null) {
                 window.alert("Data is loaded. Build to show data");
             }
         });
     });
 
     $('.buildbtn').click(function () {
-        if(dataReceived!=null) {
+        if (dataReceived != null) {
             for (i = currentEventNum; i <= dataReceived.length - 1; i++) {
                 var eventli = document.createElement("LI");
                 var newMainItem = document.createTextNode(dataReceived[i].type + ", x= " + dataReceived[i].x + ", y= " + dataReceived[i].y + ", g= " + dataReceived[i].g + ", h= " + dataReceived[i].h);
@@ -66,14 +80,14 @@ $(document).ready(function () {
             }
             var mydiv = $(".eventLog");
             mydiv.scrollTop(mydiv.prop("scrollHeight"));
-        }else{
+        } else {
             window.alert("No data loaded. Please select file and load data.")
         }
     });
 
     $('.stepbtn').click(function () {
         var eventli = document.createElement("LI");
-        if(currentEventNum<=dataReceived.length) {
+        if (currentEventNum <= dataReceived.length) {
             var newMainItem = document.createTextNode(dataReceived[currentEventNum].type + ", x= " + dataReceived[currentEventNum].x + ", y= " + dataReceived[currentEventNum].y + ", g= " + dataReceived[currentEventNum].g + ", h= " + dataReceived[currentEventNum].h);
             currentEventNum += 1;
             if (dataReceived[currentEventNum].type == 'expanding') {
@@ -99,17 +113,28 @@ $(document).ready(function () {
         }
     });
 
-    $("#inputFile").click(function(){
-        $.getJSON( "temp.json", function( data ) {
-            eventItems = [];
-            $.each(data, function (key, val) {
-                eventItems.push(val);
-                //Can be accessed by eventItems[0][i] of i loop
-            });
-                firebase.database().ref('/').set({
-                data : eventItems[0]
+    $("#inputFile").change(function () {
+        var fr = new FileReader();
+        fr.onload = function (e) {
+            textData = e.target.result;
+        };
+        fr.readAsText(this.files[0]);
 
+    });
+
+    $("#uploader").click(function () {
+            $.getJSON('temp.json', function (data) {
+                eventItems = [];
+                $.each(data, function (key, val) {
+                    eventItems.push(val);
+                    //Can be accessed by eventItems[0][i] of i loop
+                });
+                firebase.database().ref('/').set({
+                    data: eventItems[0]
+
+                });
             });
-        });
+        window.alert("File uploaded")
     })
+
 });
