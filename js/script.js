@@ -1,8 +1,5 @@
 //Created by surayezrahman on 23/8/17.
 
-
-var sampleText = "Sample text here";
-var sampleArray = ['ab','3e', '232'];
 var currentEventNum = 0;
 var eventItems;
 var openList = [];
