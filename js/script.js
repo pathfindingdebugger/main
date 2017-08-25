@@ -4,40 +4,10 @@ var currentEventNum = 0;
 var eventItems;
 var openList = [];
 var closedList = [];
-var textData;
 var dataReceived;
 
 $(document).ready(function () {
 
-    // fileInput.addEventListener('change', function(o)
-    // {   var fr = new FileReader();
-    //     fr.onload = function(e)
-    //     {
-    //         showDataFile(e, o);
-    //     };
-    //     fr.readAsText(o.files[0]);
-    // };
-    //
-    // function showDataFile(e, o)
-    // {
-    //     textData = e.target.result;
-    // }
-
-    // fileInput.addEventListener('change', function(e) {
-    //     var file = fileInput.files[0];
-    //     var textType = /text.*/;
-    //
-    //     if (file.type.match(textType)) {
-    //         var reader = new FileReader();
-    //
-    //         reader.onload = function (e) {
-    //             textData = reader.result;
-    //         };
-    //         reader.readAsText(file);
-    //     } else {
-    //         window.alert("File not supported!");
-    //     }
-    // });
 
     $('#dataLoader').click(function () {
         var ref = firebase.database().ref("/");
@@ -124,17 +94,38 @@ $(document).ready(function () {
     });
 
     $("#uploader").click(function () {
-            $.getJSON(textData, function (data) {
-                // eventItems = [];
-                // $.each(data, function (key, val) {
-                //     eventItems.push(val);
-                //     //Can be accessed by eventItems[0][i] in i loop
-                // });
+            $.getJSON('temp.json', function (data) {
+                eventItems = [];
+                $.each(data, function (key, val) {
+                    eventItems.push(val);
+                    //Can be accessed by eventItems[0][i] in i loop
+                });
                 firebase.database().ref('/').set({
-                    data: textData
+                    data: eventItems[0]
                 });
             });
         window.alert("File uploaded")
     })
 
 });
+
+// function loadJSON(callback) {
+//
+//     var xobj = new XMLHttpRequest();
+//     xobj.overrideMimeType("application/json");
+//     xobj.open('GET', '././temp.json', true); // Replace 'my_data' with the path to your file
+//     xobj.onreadystatechange = function () {
+//         if (xobj.readyState == 4 && xobj.status == "200") {
+//             // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+//             callback(xobj.responseText);
+//         }
+//     };
+//     xobj.send(null);
+// }
+//
+// function jsonWork() {
+//     loadJSON(function(response) {
+//         // Parse JSON string into object
+//         actual_JSON = JSON.parse(response);
+//     });
+// }
