@@ -5,6 +5,8 @@ var sampleText = "Sample text here";
 var sampleArray = ['ab','3e', '232'];
 var currentEventNum = 0;
 var eventItems;
+var openList = [];
+var closedList = [];
 
 $(document).ready(function () {
     $.getJSON( "temp.json", function( data ) {
@@ -18,15 +20,31 @@ $(document).ready(function () {
 
     $('.playbtn').click(function () {
         for(i=currentEventNum;i<=eventItems[0].length-1;i++) {
-            var newList = document.createElement("LI");                             // Create a <li> node
-            // Create a text node
-            var newItem = document.createTextNode(eventItems[0][i].type + ", x= " + eventItems[0][i].x + ", y= " +eventItems[0][i].y + ", g= " +eventItems[0][i].g + ", h= " +eventItems[0][i].h);
+            var eventli = document.createElement("LI");
+            var newMainItem = document.createTextNode(eventItems[0][i].type + ", x= " + eventItems[0][i].x + ", y= " +eventItems[0][i].y + ", g= " +eventItems[0][i].g + ", h= " +eventItems[0][i].h);
             currentEventNum += 1;
-            newList.appendChild(newItem);                                           // Append the text to <li>
-        $('#openListConsole').append(newList);
-        $('#eventList').append(newList);
 
+            if(eventItems[0][i].type == 'expanding'){
+                var openListli = document.createElement("LI");
+                openList.push(eventItems[0][i].x);
+                var openListItem = document.createTextNode("["+openList+"]");
+                openListli.appendChild(openListItem)
+            }
 
+            if(eventItems[0][i].type == 'closing'){
+                openList.pop(eventItems[0][i].x);
+                var closedListli = document.createElement("LI");
+                closedList.push(eventItems[0][i].x);
+                var closedListItem = document.createTextNode("["+closedList+"]");
+                closedListli.appendChild(closedListItem)
+            }
+
+            // Append the text to <li>
+            eventli.appendChild(newMainItem);
+
+        $('#openListConsole').append(openListli);
+        $('#closedListConsole').append(closedListli);
+        $('#eventList').append(eventli);
         }
 
 	var mydiv = $(".eventLog");
@@ -34,17 +52,33 @@ $(document).ready(function () {
     });
 
     $('.stepbtn').click(function () {
-        var newList = document.createElement("LI");                             // Create a <li> node
-
-        var newItem = document.createTextNode(eventItems[0][currentEventNum].type + ", x= " + eventItems[0][currentEventNum].x + ", y= " +eventItems[0][currentEventNum].y + ", g= " +eventItems[0][currentEventNum].g + ", h= " +eventItems[0][currentEventNum].h);          // Create a text node
+        var eventli = document.createElement("LI");                             // Create a <li> node
+        var newMainItem = document.createTextNode(eventItems[0][currentEventNum].type + ", x= " + eventItems[0][currentEventNum].x + ", y= " +eventItems[0][currentEventNum].y + ", g= " +eventItems[0][currentEventNum].g + ", h= " +eventItems[0][currentEventNum].h);          // Create a text node
         currentEventNum += 1;
-        newList.appendChild(newItem);                                           // Append the text to <li>
+            if (eventItems[0][currentEventNum].type == 'expanding') {
+                var openListli = document.createElement("LI");
+                openList.push(eventItems[0][currentEventNum].x);
+                var openListItem = document.createTextNode("[" + openList + "]");
+                openListli.appendChild(openListItem)
+            }
 
-        $('#eventList').append(newList);
+            if (eventItems[0][currentEventNum].type == 'closing') {
+                openList.pop(eventItems[0][currentEventNum].x);
+                var closedListli = document.createElement("LI");
+                closedList.push(eventItems[0][i].x);
+                var closedListItem = document.createTextNode("[" + closedList + "]");
+                closedListli.appendChild(closedListItem)
+            }
+            // Append the text to <li>
+            eventli.appendChild(newMainItem);
 
-	var mydiv = $(".eventLog");
-	mydiv.scrollTop(mydiv.prop("scrollHeight"));
-    });
+            $('#openListConsole').append(openListli);
+            $('#closedListConsole').append(closedListli);
+            $('#eventList').append(eventli);
+
+            var mydiv = $(".eventLog");
+            mydiv.scrollTop(mydiv.prop("scrollHeight"));
+        });
 
 });
 
