@@ -39,15 +39,13 @@ $(document).ready(function () {
                     var closedListItem = document.createTextNode("[" + closedList + "]");
                     closedListli.appendChild(closedListItem)
                 }
-
                 // Append the text to <li>
                 eventli.appendChild(newMainItem);
                 $('#openListConsole').append(openListli);
                 $('#closedListConsole').append(closedListli);
                 $('#eventList').append(eventli);
             }
-
-            var mydiv = $(".eventLog");
+            var mydiv = $(".eventLog, .openList, .closedList");
             mydiv.scrollTop(mydiv.prop("scrollHeight"));
         }else{
             window.alert("No data loaded. Please select file and load data.")
@@ -55,9 +53,9 @@ $(document).ready(function () {
     });
 
     $('.stepbtn').click(function () {
-        var eventli = document.createElement("LI");                             // Create a <li> node
+        var eventli = document.createElement("LI");
         if(currentEventNum<=dataReceived.length) {
-            var newMainItem = document.createTextNode(dataReceived[currentEventNum].type + ", x= " + dataReceived[currentEventNum].x + ", y= " + dataReceived[currentEventNum].y + ", g= " + dataReceived[currentEventNum].g + ", h= " + dataReceived[currentEventNum].h);          // Create a text node
+            var newMainItem = document.createTextNode(dataReceived[currentEventNum].type + ", x= " + dataReceived[currentEventNum].x + ", y= " + dataReceived[currentEventNum].y + ", g= " + dataReceived[currentEventNum].g + ", h= " + dataReceived[currentEventNum].h);
             currentEventNum += 1;
             if (dataReceived[currentEventNum].type == 'expanding') {
                 var openListli = document.createElement("LI");
@@ -75,14 +73,11 @@ $(document).ready(function () {
             }
             // Append the text to <li>
             eventli.appendChild(newMainItem);
-
             $('#openListConsole').append(openListli);
             $('#closedListConsole').append(closedListli);
             $('#eventList').append(eventli);
-
             var mydiv = $(".eventLog");
             mydiv.scrollTop(mydiv.prop("scrollHeight"));
-
         }
     });
 
@@ -93,12 +88,11 @@ $(document).ready(function () {
                 eventItems.push(val);
                 //Can be accessed by eventItems[0][i] in i loop
             });
-        firebase.database().ref('/').set({
+            firebase.database().ref('/').set({
             data : eventItems[0]
             });
         });
     })
-
 });
 
 
