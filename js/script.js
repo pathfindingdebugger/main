@@ -8,23 +8,22 @@ var textData;
 var dataReceived;
 
 $(document).ready(function () {
-    var fileInput = document.getElementById('inputFile');
 
-    fileInput.addEventListener('change', function(e) {
-        var file = fileInput.files[0];
-        var textType = /text.*/;
-
-        if (file.type.match(textType)) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                textData = reader.result;
-            };
-            reader.readAsText(file);
-        } else {
-            window.alert("File not supported!");
-        }
-    });
+    // fileInput.addEventListener('change', function(e) {
+    //     var file = fileInput.files[0];
+    //     var textType = /text.*/;
+    //
+    //     if (file.type.match(textType)) {
+    //         var reader = new FileReader();
+    //
+    //         reader.onload = function (e) {
+    //             textData = reader.result;
+    //         };
+    //         reader.readAsText(file);
+    //     } else {
+    //         window.alert("File not supported!");
+    //     }
+    // });
 
     $('#dataLoader').click(function(){
         var ref = firebase.database().ref("/");

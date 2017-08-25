@@ -19,7 +19,7 @@
     <!--Custom JavaScript-->
     <script src="js/script.js"></script>
 
-    <title>Pathfinding Debugger</title>
+    <title>Pathfinding Debugger Project</title>
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap.min.css" rel="stylesheet">
@@ -54,7 +54,7 @@
       <!--Navbar-->
       <nav id="nav">
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo">Pathfinding Debugger Project</a>
+          <a href="#" class="brand-logo">Pathfinding Debugger</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="#">Debugger</a></li>
             <li><a href="#">About Us</a></li>
@@ -96,7 +96,25 @@
             <p>Map Name and Algorithm</p>
         </div>
           <div id="uploadbtn" class="uploadbtn col-sm-2 col-md-2">
-              <input type="file" id="inputFile">
+
+              <script>
+                  function loadFile(o)
+                  {
+                      var fr = new FileReader();
+                      fr.onload = function(e)
+                      {
+                          showDataFile(e, o);
+                      };
+                      fr.readAsText(o.files[0]);
+                  }
+
+                  function showDataFile(e, o)
+                  {
+                      document.getElementById("graphBox").innerText = e.target.result;
+                  }
+              </script>
+              <input type="file" id="inputFile" onchange="loadFile(this)">
+
               <button id="dataLoader" class="btn" style="width: 300px">Load Data</button>
 
           </div>
