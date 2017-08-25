@@ -13,7 +13,7 @@ $(document).ready(function () {
             dataReceived = snapshot.val();
             dataReceived = dataReceived.data;
             if(dataReceived!=null) {
-                window.alert("Data is loaded");
+                window.alert("Data is loaded. Build to show data");
             }
         });
     });
