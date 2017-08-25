@@ -86,7 +86,7 @@ $(document).ready(function () {
             eventItems = [];
             $.each(data, function (key, val) {
                 eventItems.push(val);
-                //Can be accessed by eventItems[0][i] in i loop
+                //Can be accessed by eventItems[0][i] of i loop
             });
             firebase.database().ref('/').set({
             data : eventItems[0]
