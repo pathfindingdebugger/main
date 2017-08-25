@@ -31,6 +31,21 @@
     <!-- Custom styles for ths template -->
     <link href="style.css" rel="stylesheet">
 
+    <!--Firebase Authentication-->
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+          apiKey: "AIzaSyCKIviEEAWT68NEpD61aIAdH-hyGbO4f-E",
+          authDomain: "warthogresearch.firebaseapp.com",
+          databaseURL: "https://warthogresearch.firebaseio.com",
+          projectId: "warthogresearch",
+          storageBucket: "",
+          messagingSenderId: "1050168913974"
+      };
+      firebase.initializeApp(config);
+    </script>
+
   </head>
 
 
@@ -61,7 +76,7 @@
       <!-- Three columns of text below the carousel -->
       <div class="row top-bar">
         <div class="btn1 col-sm-1 col-md-1">
-            <a class="playbtn btn"><i class="material-icons">build</i></a>
+            <a class="buildbtn btn"><i class="material-icons">build</i></a>
             <span style="padding-left: 10px">Build</span>
         </div>
         <div class="btn2 col-sm-1 col-md-1">
@@ -73,7 +88,7 @@
             <span style="padding-left: 10px">Step</span>
         </div>
         <div class="btn4 col-sm-1 col-md-1">
-            <a class="btn"><i class="material-icons">pause_circle_outline</i></a>
+            <a class="pausebtn btn"><i class="material-icons">pause_circle_outline</i></a>
             <span style="padding-left: 10px">Pause</span>
         </div>
 
@@ -81,15 +96,9 @@
             <p>Map Name and Algorithm</p>
         </div>
           <div id="uploadbtn" class="uploadbtn col-sm-2 col-md-2">
-              <p>Choose your JSON file:</p>
               <input type="file" id="inputFile">
-              <!--<button id="upload" onclick="getItem()">Upload</button>-->
-              <!--<script>-->
-                  <!--function getItem()-->
-                  <!--{-->
-                      <!--window.localStorage.setItem('myData', )-->
-                  <!--}-->
-              <!--</script>-->
+              <button id="dataLoader" class="btn" style="width: 300px">Load Data</button>
+
           </div>
       </div>
 
