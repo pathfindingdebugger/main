@@ -3,30 +3,42 @@
 
 var sampleText = "Sample text here";
 var sampleArray = ['ab','3e', '232'];
-var sampleJSON = '{ "algorithms" : [' +
-    '{ "type":"astar" , "time":"4ms" },' +
-    '{ "type":"jp" , "time":"2ms" },' +
-    '{ "type":"search" , "time":"10ms" } ]}';
+var sampleJSON = '{ "expanding" : [' +
+    '{ "type":"astar" , "node":"A" },' +
+    '{ "type":"jp" , "node":"B" },' +
+    '{ "type":"search" , "node":"C" } ]}';
 
 
 var obj = JSON.parse(sampleJSON);
 
 $(document).ready(function () {
+	
+
     $('.playbtn').click(function () {
         for(i=0;i<3;i++) {
             var newList = document.createElement("LI");                             // Create a <li> node
-            var newItem = document.createTextNode(obj.algorithms[i].type);          // Create a text node
+
+            var newItem = document.createTextNode(obj.expanding[i].type);          // Create a text node
             newList.appendChild(newItem);                                           // Append the text to <li>
 
-            $('.eventLog').append(newList);
+ 	$('#eventList').append(newList);
+
         }
+
+	var mydiv = $(".eventLog");
+	mydiv.scrollTop(mydiv.prop("scrollHeight"));
     });
 
     $('.stepbtn').click(function () {
         var newList = document.createElement("LI");                             // Create a <li> node
-        var newItem = document.createTextNode(obj.algorithms[0].type);          // Create a text node
+
+        var newItem = document.createTextNode(obj.expanding[0].type);          // Create a text node
         newList.appendChild(newItem);                                           // Append the text to <li>
 
-        $('.eventLog').append(newList);
+        $('#eventList').append(newList);
+
+	var mydiv = $(".eventLog");
+	mydiv.scrollTop(mydiv.prop("scrollHeight"));
     });
+
 });
