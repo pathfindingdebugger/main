@@ -118,3 +118,13 @@ padding: 2px 17px 2px 17px;
     padding: 5px;
     margin: 10px;
 }
+
+#eventList li:hover{
+    background-color: #297ba4;
+    color: #000;
+}
+
+#eventList li:focus{
+    background-color: #297ba4;
+    color: #000;
+}
