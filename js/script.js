@@ -117,21 +117,21 @@ $(document).ready(function () {
         var fr = new FileReader();
         fr.onload = function (e) {
             textData = e.target.result;
+            console.log(textData)
         };
         fr.readAsText(this.files[0]);
 
     });
 
     $("#uploader").click(function () {
-            $.getJSON('temp.json', function (data) {
-                eventItems = [];
-                $.each(data, function (key, val) {
-                    eventItems.push(val);
-                    //Can be accessed by eventItems[0][i] of i loop
-                });
+            $.getJSON(textData, function (data) {
+                // eventItems = [];
+                // $.each(data, function (key, val) {
+                //     eventItems.push(val);
+                //     //Can be accessed by eventItems[0][i] of i loop
+                // });
                 firebase.database().ref('/').set({
-                    data: eventItems[0]
-
+                    data: textData
                 });
             });
         window.alert("File uploaded")

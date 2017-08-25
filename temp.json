@@ -1,4 +1,4 @@
-{ "eventList" : [ 
+{ "eventList" : [
 	 { "type" : "expanding","x" : 25,"y" : 86,"g" : 0,"h" : 30000 }, 
 	 { "type" : "generating","x" : 25,"y" : 85,"g" : 0,"h" : 20000 }, 
 	 { "type" : "generating","x" : 26,"y" : 85,"g" : 0,"h" : 24142 }, 
