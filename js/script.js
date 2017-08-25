@@ -3,22 +3,23 @@
 
 var sampleText = "Sample text here";
 var sampleArray = ['ab','3e', '232'];
-var sampleJSON = '{ "expanding" : [' +
-    '{ "type":"astar" , "node":"A" },' +
-    '{ "type":"jp" , "node":"B" },' +
-    '{ "type":"search" , "node":"C" } ]}';
-
-
-var obj = JSON.parse(sampleJSON);
+var eventItems;
 
 $(document).ready(function () {
-	
+    $.getJSON( "temp.json", function( data ) {
+        eventItems = [];
+        $.each( data, function( key, val ) {
+            eventItems.push(val);
+            //Can be accessed by eventItems[0][i] in i loop
+        });
+
+    });
 
     $('.playbtn').click(function () {
-        for(i=0;i<3;i++) {
+        for(i=0;i<=eventItems[0].length-1;i++) {
             var newList = document.createElement("LI");                             // Create a <li> node
-
-            var newItem = document.createTextNode(obj.expanding[i].type);          // Create a text node
+            // Create a text node
+            var newItem = document.createTextNode(eventItems[0][i].type + ", x= " + eventItems[0][i].x + ", y= " +eventItems[0][i].y + ", g= " +eventItems[0][i].g + ", h= " +eventItems[0][i].h);
             newList.appendChild(newItem);                                           // Append the text to <li>
 
  	$('#eventList').append(newList);
@@ -42,3 +43,4 @@ $(document).ready(function () {
     });
 
 });
+
