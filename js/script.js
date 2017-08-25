@@ -4,7 +4,7 @@ var currentEventNum = 0;
 var eventItems;
 var openList = [];
 var closedList = [];
-var textData;
+// var textData;
 var dataReceived;
 
 $(document).ready(function () {

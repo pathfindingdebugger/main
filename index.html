@@ -98,6 +98,7 @@
           <div id="uploadbtn" class="uploadbtn col-sm-2 col-md-2">
 
               <script>
+                  var textFile;
                   function loadFile(o)
                   {
                       var fr = new FileReader();
@@ -110,7 +111,7 @@
 
                   function showDataFile(e, o)
                   {
-                      document.getElementById("graphBox").innerText = e.target.result;
+                      textFile = e.target.result;
                   }
               </script>
               <input type="file" id="inputFile" onchange="loadFile(this)">
