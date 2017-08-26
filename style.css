@@ -67,6 +67,7 @@ body {
     border: groove #889DB5;
     margin: 10px;
     height: 550px;
+    overflow: scroll;
 }
 
 .openList{

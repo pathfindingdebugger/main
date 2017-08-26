@@ -50,9 +50,18 @@ $(document).ready(function () {
             }
             var mydiv = $(".eventLog");
             mydiv.scrollTop(mydiv.prop("scrollHeight"));
+
+            xhr = new XMLHttpRequest();
+            xhr.open("GET","australiaLow.svg",false);
+            xhr.overrideMimeType("image/svg+xml");
+            xhr.send("");
+            document.getElementById("graph")
+                .appendChild(xhr.responseXML.documentElement);
+
         } else {
             window.alert("No data loaded. Please select file and load data.")
         }
+
     });
 
     $('.stepbtn').click(function () {
