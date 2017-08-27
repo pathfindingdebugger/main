@@ -97,19 +97,36 @@
         </div>
 
         <div class="btn3 col-lg-2 col-md-2" style="margin: 10px">
-          <button id="dataLoader" class="btn" style="width: 100%">Load Data</button>
+          <!--<button id="dataLoader" class="btn" style="width: 100%">Load Data</button>-->
         </div>
 
         <div id="uploadzone" class="uploadbtn col-sm-2 col-md-2">
-          <input type="file" id="inputFile">
-          <button id="uploader" class="btn">Upload</button>
+          <!--<button id="uploader" class="btn">Upload</button>-->
+            <button data-target="modal1" class="btn modal-trigger" style="width: 100%">Upload JSON</button>
 
         </div>
       </div>
 
+        <!-- Input Modal -->
+        <div id="modal1" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Enter JSON here:</h4>
+                <form id='nameForm' style="height: 90%;">
+                    <!--<input id='nameField' type='text' maxlength='25'></input>-->
+                    <textarea id="JSONinput" placeholder="Paste your JSON here..."></textarea>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button id='submit1btn' class="modal-action modal-close btn" type='button'>Submit</button>
+            </div>
+
+        </div>
+
         <div id="graphBox" class="graphBox row">
             <h4>Graph:</h4>
             <div id="graph" class="graph col-lg-6">
+
             </div>
             <div class="lists col-lg-5">
                 <div class="row">
@@ -150,6 +167,7 @@
         </div>
 
     </div>
+
 
         <!--Footer-->
         <div class="footer">

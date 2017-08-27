@@ -8,17 +8,16 @@ var dataReceived;
 
 $(document).ready(function () {
 
-
-    $('#dataLoader').click(function () {
-        var ref = firebase.database().ref("/");
-        ref.once("value").then(function (snapshot) {
-            dataReceived = snapshot.val();
-            dataReceived = dataReceived.data;
-            if (dataReceived != null) {
-                window.alert("Data is loaded. Build to show data");
-            }
-        });
-    });
+    // $('#dataLoader').click(function () {
+        // var ref = firebase.database().ref("/data/");
+        // ref.once("value").then(function (snapshot) {
+        //     dataReceived = snapshot.val();
+        //     dataReceived = dataReceived.eventList;
+        //     if (dataReceived != null) {
+        //         window.alert("Data is loaded. Build to show data");
+        //     }
+        // });
+    // });
 
     $('.buildbtn').click(function () {
         if (dataReceived != null) {
@@ -50,13 +49,6 @@ $(document).ready(function () {
             }
             var mydiv = $(".eventLog");
             mydiv.scrollTop(mydiv.prop("scrollHeight"));
-
-            xhr = new XMLHttpRequest();
-            xhr.open("GET","australiaLow.svg",false);
-            xhr.overrideMimeType("image/svg+xml");
-            xhr.send("");
-            document.getElementById("graph")
-                .appendChild(xhr.responseXML.documentElement);
 
         } else {
             window.alert("No data loaded. Please select file and load data.")
@@ -92,49 +84,26 @@ $(document).ready(function () {
         }
     });
 
-    $("#inputFile").change(function () {
-        var fr = new FileReader();
-        fr.onload = function (e) {
-            textData = e.target.result;
-            console.log(textData)
-        };
-        fr.readAsText(this.files[0]);
-
+    $(document).ready(function(){
+        // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
     });
 
-    $("#uploader").click(function () {
-            $.getJSON('temp.json', function (data) {
-                eventItems = [];
-                $.each(data, function (key, val) {
-                    eventItems.push(val);
-                    //Can be accessed by eventItems[0][i] in i loop
-                });
-                firebase.database().ref('/').set({
-                    data: eventItems[0]
-                });
-            });
-        window.alert("File uploaded")
-    })
+    $("#submit1btn").click(function () {
+        var getText = document.getElementById('JSONinput').value;
+        var currentJSON = JSON.parse(getText);
+        firebase.database().ref('/').set({
+            data:currentJSON
+        });
+        var ref = firebase.database().ref("/data/");
+        ref.once("value").then(function (snapshot) {
+            dataReceived = snapshot.val();
+            dataReceived = dataReceived.eventList;
+            if (dataReceived != null) {
+                window.alert("Data is loaded. Build to show data");
+            }
+        });
+        // window.alert("File uploaded")
+    });
 
 });
-
-// function loadJSON(callback) {
-//
-//     var xobj = new XMLHttpRequest();
-//     xobj.overrideMimeType("application/json");
-//     xobj.open('GET', '././temp.json', true); // Replace 'my_data' with the path to your file
-//     xobj.onreadystatechange = function () {
-//         if (xobj.readyState == 4 && xobj.status == "200") {
-//             // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-//             callback(xobj.responseText);
-//         }
-//     };
-//     xobj.send(null);
-// }
-//
-// function jsonWork() {
-//     loadJSON(function(response) {
-//         // Parse JSON string into object
-//         actual_JSON = JSON.parse(response);
-//     });
-// }
