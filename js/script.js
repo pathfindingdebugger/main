@@ -8,17 +8,6 @@ var dataReceived;
 
 $(document).ready(function () {
 
-    // $('#dataLoader').click(function () {
-        // var ref = firebase.database().ref("/data/");
-        // ref.once("value").then(function (snapshot) {
-        //     dataReceived = snapshot.val();
-        //     dataReceived = dataReceived.eventList;
-        //     if (dataReceived != null) {
-        //         window.alert("Data is loaded. Build to show data");
-        //     }
-        // });
-    // });
-
     $('.buildbtn').click(function () {
         if (dataReceived != null) {
             for (i = currentEventNum; i <= dataReceived.length - 1; i++) {
@@ -41,7 +30,6 @@ $(document).ready(function () {
                     closedListli.appendChild(closedListItem)
                 }
 
-                // Append the text to <li>
                 eventli.appendChild(newMainItem);
                 $('#openListConsole').append(openListli);
                 $('#closedListConsole').append(closedListli);
@@ -85,7 +73,6 @@ $(document).ready(function () {
     });
 
     $(document).ready(function(){
-        // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
         $('.modal').modal();
     });
 
@@ -103,7 +90,6 @@ $(document).ready(function () {
                 window.alert("Data is loaded. Build to show data");
             }
         });
-        // window.alert("File uploaded")
     });
 
 });
